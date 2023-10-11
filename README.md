@@ -7,7 +7,7 @@
 
 ## Setting up Gnome with xrdp
 
-Download and install [Gnome Desktop]((https://ubuntu.com/download/desktop))
+Download and install the [Gnome Desktop](https://ubuntu.com/download/desktop)
 
 The next parts of the installation will need to be done on the Ubuntu Desktop, if it's a virtual install then via the virtual console, if it's on real hardware then with a keyboard, mouse and monitor connected. Depending on how you installed Ubuntu, you'll have to add yourself to the sudo group, to check that you're in the sudo group type the following at the prompt.
 
