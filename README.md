@@ -50,6 +50,8 @@ export XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
 sudo systemctl restart xrdp
 ```
 
+![My Current Desktop](/assets/Desktop.png)
+
 ### Allow Colord without the admin prompt at login
 
 ``` bash
