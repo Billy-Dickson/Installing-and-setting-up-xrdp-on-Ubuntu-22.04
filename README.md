@@ -2,11 +2,20 @@
 
 ## Prerequistes
 
-1. A running [Ubuntu Gnome Desktop](https://ubuntu.com/download/desktop) installed on hardware or a virtual machine, (mine is running on a [Proxmox Virtual Machine](https://www.proxmox.com/en/downloads)).
+1. A working knowledge of Linux and how to install it on real hardware or in a Virtual Environment.
+2. A running [Ubuntu Gnome Desktop](https://ubuntu.com/download/desktop) installed on hardware or a virtual machine, (mine is running on a [Proxmox Virtual Machine](https://www.proxmox.com/en/downloads)).
 
 ## Setting up Gnome with xrdp
 
 Download and install [Gnome Desktop]((https://ubuntu.com/download/desktop))
+
+The next parts of the installation will need to be done on the Ubuntu Desktop, if it's a virtual install then via the virtual console, if it's on real hardware then with a keyboard, mouse and monitor connected. Depending on how you installed Ubuntu, you'll have to add yourself to the sudo group, to check that you're in the sudo group type the following at the prompt.
+
+```bash
+id
+```
+
+Instructructions on adding yourself to the group are [here](https://askubuntu.com/questions/124166/how-do-i-add-myself-into-the-sudoers-group#124200)
 
 ### Run through the Ubuntu installer and update, then install xrdp
 
@@ -170,104 +179,6 @@ rm -rif pulseaudio-module-xrdp
 All going well, your sound setting in [Ubuntu Gnome](https://ubuntu.com/download/desktop) should look like this, feel free to play a wave or mp3 file to test.
 
 ![Gnome Sound settings](/assets/Sound.png)
-
-### (Optional) - Setting up a Cloudflare Tunnel for remote access
-
-#### Add cloudflare gpg key
-
-``` bash
-sudo mkdir -p --mode=0755 /usr/share/keyrings
-curl -fsSL https://pkg.cloudflare.com/cloudflare-main.gpg | sudo tee /usr/share/keyrings/cloudflare-main.gpg >/dev/null
-```
-
-#### Add this repo to your apt repositories
-
-```bash
-echo 'deb [signed-by=/usr/share/keyrings/cloudflare-main.gpg] https://pkg.cloudflare.com/cloudflared bookworm main' | sudo tee /etc/apt/sources.list.d/cloudflared.list
-```
-
-## Creating a Cloudflare Tunnel with cloudflared
-
-The next steps are to authenticate cloudflared with the Cloudflare account, and then use it to create the Cloudflare Tunnel.  
-
-### Setting up the Cloudflare Access Application
-
-The first step is to setup an application in Cloudflare Access. This ensures that when the tunnel is created Cloudflare knows what access control measures to apply to incoming connections.
-
-This can be done through the following steps:
-
-1. Go to the [Cloudflare for Teams Dashboard](https://dash.teams.cloudflare.com/)
-2. Open the Zero Trust menu and select Access then Applications
-3. Click the Add an application button
-4. Select self-hosted
-5. Enter an application name, session duration and application domain and click the Next button  
-6. Setup the application policies to suit your requirements and click the Next button  
-7. Click the Add application button
-
-Now that the application is configured, it’s time to install cloudflared as the bastion host on a designated server.
-
-#### Install cloudflared
-
-```bash
-sudo apt update && sudo apt install cloudflared
-```
-
-#### Authenticating cloudflared
-
-```bash
-cloudflared tunnel login
-```
-
-#### Create a tunnel and give it a name
-
-```bash
-cloudflared tunnel create Ubuntu-Desktop
-```
-
-Running this command will
-
-1. Create a tunnel by establishing a persistent relationship between the name you provide and a UUID for your tunnel.
-2. At this point, no connection is active within the tunnel yet.
-3. Generate a tunnel credentials file in the default cloudflared directory.
-4. Create a subdomain of my registered domain.
-
-From the output of the command, take note of the tunnel’s UUID and the path to your tunnel’s credentials file.
-
-Confirm that the tunnel has been successfully created by running
-
-```bash
-cloudflared tunnel list
-```
-
-![Tunnel List](/assets/cloudflared_tunnel_list.png)
-
-### Run cloudflared as a service
-
-#### Install the cloudflared service
-
-```bash
-cloudflared service install
-```
-
-#### Start the service
-
-```bash
-systemctl start cloudflared
-```
-
-#### (Optional) View the status of the service
-
-```bash
-systemctl status cloudflared
-```
-
-### Next step
-
-You can now route traffic through your tunnel. If you add IP routes or otherwise change the configuration, restart the service to load the new configuration.
-
-```bash
-systemctl restart cloudflared
-```
 
 ## References
 
