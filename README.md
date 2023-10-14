@@ -173,9 +173,12 @@ sudo reboot
 #### Cleaning up afterwards, removing dependecies and files
 
 ```bash
+sudo apt purge debootstrap schroot && sudo apt autoremove
+```
+
+```bash
 cd ~
-sudo apt-get purge debootstrap schroot && apt-get autoremove
-rm -rif pulseaudio-module-xrdp
+rm -rif pulseaudio-module-xrdp && rm -rif pulseautio.src
 ```
 
 All going well, your sound setting in [Ubuntu Gnome](https://ubuntu.com/download/desktop) should look like this, feel free to play a wave or mp3 file to test.
