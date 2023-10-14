@@ -173,14 +173,22 @@ sudo reboot
 #### Cleaning up afterwards, removing dependecies and files
 
 ```bash
+sudo apt purge debootstrap schroot && sudo apt autoremove
+```
+
+```bash
 cd ~
-sudo apt-get purge debootstrap schroot && apt-get autoremove
-rm -rif pulseaudio-module-xrdp
+rm -rif pulseaudio-module-xrdp && rm -rif pulseautio.src
 ```
 
 All going well, your sound setting in [Ubuntu Gnome](https://ubuntu.com/download/desktop) should look like this, feel free to play a wave or mp3 file to test.
 
 ![Gnome Sound settings](/assets/Sound.png)
+
+### Speeding up xrdp on Ubuntu 22.04 with xorg
+
+#### How can I disable compositing in xrdp on Ubuntu 20.04 with Xorg?
+
 
 ## References
 
@@ -188,3 +196,4 @@ All going well, your sound setting in [Ubuntu Gnome](https://ubuntu.com/download
 - [neutrinalobs pulseaudio module xrdp](https://github.com/neutrinolabs/pulseaudio-module-xrdp) - github page
 - Griffon's [IT Library](https://c-nergy.be/blog/?cat=8)
 - Gnome [Policy Kit](https://manpages.ubuntu.com/manpages/focal/man8/pklocalauthority.8.html)
+- Speeding up [xrdp on Ubuntu 20.04](https://devicetests.com/speeding-up-xrdp-ubuntu-20-04-xorg-tips-tricks) - Device Test Website
