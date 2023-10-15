@@ -111,10 +111,10 @@ ResultActive=no
 sudo apt install build-essential dpkg-dev libpulse-dev git autoconf libtool
 ```
 
-#### Download the github repositery
+#### Install git and download the github repositery
 
 ```bash
-git clone https://github.com/neutrinolabs/pulseaudio-module-xrdp.git
+sudo apt install git && git clone https://github.com/neutrinolabs/pulseaudio-module-xrdp.git
 ```
 
 #### Change directory into the repository
