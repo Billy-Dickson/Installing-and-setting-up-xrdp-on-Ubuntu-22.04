@@ -185,10 +185,13 @@ All going well, your sound setting in [Ubuntu Gnome](https://ubuntu.com/download
 
 ![Gnome Sound settings](/assets/Sound.png)
 
-### Speeding up xrdp on Ubuntu 22.04 with xorg
+#### (Optional) Installing Microsoft TTF (Truetype Fonts)
 
-#### How can I disable compositing in xrdp on Ubuntu 20.04 with Xorg?
+This is quite handy if you happen to use LibraOffice, as it will add the fonts to the font library and render and print Microsoft Fonts corrently.
 
+```bash
+sudo apt install ttf-mscorefonts-installer
+```
 
 ## References
 
