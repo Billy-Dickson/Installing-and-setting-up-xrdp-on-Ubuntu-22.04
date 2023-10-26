@@ -193,6 +193,7 @@ This is quite handy if you happen to use LibraOffice, as it will add the fonts t
 sudo apt install ttf-mscorefonts-installer
 ```
 
+
 ## References
 
 - [How to install XRDP on Ubuntu 22.04](https://youtu.be/U2xHSRuwJ-A?si=1Xs84HscmLwlZAtj) - Easy Hacks
